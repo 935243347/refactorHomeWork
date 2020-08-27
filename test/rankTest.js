@@ -62,7 +62,7 @@ rankTest('should_return_B_when_rating_given_voyage_length_22_history_1', t => {
   t.is("B", result);
 })
 
-rankTest('should_return_B_when_rating_given_voyage_length_13_history_5_with_profit_-1', t => {
+rankTest('should_return_B_when_rating_given_voyage_length_13_history_5_with_profit_-1_zone_east-indies', t => {
   const voyage = {
     zone: 'china',
     length: 13,
@@ -93,7 +93,7 @@ rankTest('should_return_B_when_rating_given_voyage_length_13_history_5_with_prof
   t.is("B", result);
 })
 
-rankTest('should_return_A_when_rating_given_voyage_length_13_history_5_profit_1', t => {
+rankTest('should_return_A_when_rating_given_voyage_length_13_history_5_profit_-1_zone_china', t => {
   const voyage = {
     zone: 'china',
     length: 13,
@@ -118,6 +118,37 @@ rankTest('should_return_A_when_rating_given_voyage_length_13_history_5_profit_1'
     {
       zone: 'china',
       profit: -1,
+    }
+  ];
+  let result = rating(voyage, history);
+  t.is("A", result);
+})
+
+rankTest('should_return_A_when_rating_given_voyage_length_13_history_5_profit_1_zone_china', t => {
+  const voyage = {
+    zone: 'china',
+    length: 13,
+  };
+  const history = [
+    {
+      zone: 'china',
+      profit: 1,
+    },
+    {
+      zone: 'china',
+      profit: 1,
+    },
+    {
+      zone: 'china',
+      profit: 1,
+    },
+    {
+      zone: 'china',
+      profit: 1,
+    },
+    {
+      zone: 'china',
+      profit: 1,
     }
   ];
   let result = rating(voyage, history);
