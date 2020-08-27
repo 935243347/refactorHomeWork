@@ -154,3 +154,58 @@ rankTest('should_return_A_when_rating_given_voyage_length_13_history_5_profit_1_
   let result = rating(voyage, history);
   t.is("A", result);
 })
+
+rankTest('should_return_B_when_rating_given_voyage_length_17_history_11_profit_1_zone_east-indies', t => {
+  const voyage = {
+    zone: 'east-indies',
+    length: 17,
+  };
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 1,
+    },
+    {
+      zone: 'east-indies',
+      profit: 1,
+    },
+    {
+      zone: 'east-indies',
+      profit: 1,
+    },
+    {
+      zone: 'east-indies',
+      profit: 1,
+    },
+    {
+      zone: 'east-indies',
+      profit: 1,
+    },
+    {
+      zone: 'east-indies',
+      profit: 1,
+    },
+    {
+      zone: 'east-indies',
+      profit: 1,
+    },
+    {
+      zone: 'east-indies',
+      profit: 1,
+    },
+    {
+      zone: 'east-indies',
+      profit: 1,
+    },
+    {
+      zone: 'east-indies',
+      profit: 1,
+    },
+    {
+      zone: 'east-indies',
+      profit: 1,
+    }
+  ];
+  let result = rating(voyage, history);
+  t.is("B", result);
+})
