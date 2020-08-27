@@ -254,3 +254,18 @@ rankTest('should_return_A_when_rating_given_voyage_zone_china_length_5_history_1
   let result = rating(voyage, history);
   t.is("A", result);
 })
+
+rankTest('should_return_B_when_rating_given_voyage_zone_china_length_15_history_1_profit_-1_zone_china', t => {
+  const voyage = {
+    zone: 'china',
+    length: 15,
+  };
+  const history = [
+    {
+      zone: 'china',
+      profit: -1,
+    }
+  ];
+  let result = rating(voyage, history);
+  t.is("B", result);
+})
