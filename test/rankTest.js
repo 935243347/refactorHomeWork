@@ -209,3 +209,18 @@ rankTest('should_return_B_when_rating_given_voyage_length_17_history_11_profit_1
   let result = rating(voyage, history);
   t.is("B", result);
 })
+
+rankTest('should_return_B_when_rating_given_voyage_zone_abc_length_17_history_1_profit_1_zone_east-indies', t => {
+  const voyage = {
+    zone: 'abc',
+    length: 17,
+  };
+  const history = [
+    {
+      zone: 'east-indies',
+      profit: 1,
+    }
+  ];
+  let result = rating(voyage, history);
+  t.is("B", result);
+})
