@@ -51,12 +51,8 @@ function voyageAndHistoryInChina(voyage, history) {
 
 function voyageProfitFactor (voyage, history) {
   let result = 2;
-  if (voyage.zone === 'china') {
-    result += 1;
-  }
-  if (voyage.zone === 'east-indies') {
-    result += 1;
-  }
+  result += (voyage.zone === 'china') ? 1 : 0;
+  result += (voyage.zone === 'east-indies') ? 1 : 0;
   result += voyageAndHistoryInChina(voyage, history);
   return result;
 }
