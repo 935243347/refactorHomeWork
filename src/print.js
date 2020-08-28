@@ -5,6 +5,11 @@ function calculateOutstanding(invoice, outstanding) {
   return outstanding;
 }
 
+function recordDueDate(invoice) {
+  const today = new Date();
+  invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+}
+
 function printOwing (invoice) {
   let outstanding = 0;
   let result = '';
@@ -16,8 +21,7 @@ function printOwing (invoice) {
   outstanding = calculateOutstanding(invoice, outstanding);
 
   // record due date
-  const today = new Date();
-  invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+  recordDueDate(invoice);
 
   // print details
   result +=`name: ${invoice.customer}`;
