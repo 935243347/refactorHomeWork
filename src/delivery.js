@@ -5,12 +5,17 @@ function createDeliveryTime(items, anOrder, deliveryTime) {
   return 0;
 }
 
+function calculateRushDeliveryTime(anOrder) {
+  let deliveryTime = 0;
+  deliveryTime = createDeliveryTime(['MA', 'CT',], anOrder, 1);
+  deliveryTime = deliveryTime === 0 ? createDeliveryTime(['NY', 'NH',], anOrder, 2) : deliveryTime;
+  deliveryTime = deliveryTime === 0 ? 3 : deliveryTime;
+  return deliveryTime;
+}
+
 function deliveryDate (anOrder, isRush) {
   if (isRush) {
-    let deliveryTime = 0;
-    deliveryTime = createDeliveryTime(['MA', 'CT',], anOrder, 1);
-    deliveryTime = deliveryTime === 0 ? createDeliveryTime(['NY', 'NH',], anOrder, 2) : deliveryTime;
-    deliveryTime = deliveryTime === 0 ? 3 : deliveryTime;
+    let deliveryTime = calculateRushDeliveryTime(anOrder);
     return anOrder.placedOn.plusDays(1 + deliveryTime);
   }
   else {
