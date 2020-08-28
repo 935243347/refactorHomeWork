@@ -1,41 +1,23 @@
+function createDeliveryTime(items, anOrder, deliveryTime) {
+  if (items.includes(anOrder.deliveryState)) {
+    return deliveryTime;
+  }
+  return 0;
+}
+
 function deliveryDate (anOrder, isRush) {
   if (isRush) {
-    let deliveryTime;
-    if ([
-      'MA',
-      'CT',
-    ].includes(anOrder.deliveryState)) {
-      deliveryTime = 1;
-    }
-    else if ([
-      'NY',
-      'NH',
-    ].includes(anOrder.deliveryState)) {
-      deliveryTime = 2;
-    }
-    else {
-      deliveryTime = 3;
-    }
+    let deliveryTime = 0;
+    deliveryTime = createDeliveryTime(['MA', 'CT',], anOrder, 1);
+    deliveryTime = deliveryTime === 0 ? createDeliveryTime(['NY', 'NH',], anOrder, 2) : deliveryTime;
+    deliveryTime = deliveryTime === 0 ? 3 : deliveryTime;
     return anOrder.placedOn.plusDays(1 + deliveryTime);
   }
   else {
-    let deliveryTime;
-    if ([
-      'MA',
-      'CT',
-      'NY',
-    ].includes(anOrder.deliveryState)) {
-      deliveryTime = 2;
-    }
-    else if ([
-      'ME',
-      'NH',
-    ].includes(anOrder.deliveryState)) {
-      deliveryTime = 3;
-    }
-    else {
-      deliveryTime = 4;
-    }
+    let deliveryTime = 0;
+    deliveryTime = createDeliveryTime(['MA', 'CT', 'NY'], anOrder, 2);
+    deliveryTime = deliveryTime === 0 ? createDeliveryTime(['ME', 'NH'], anOrder, 3) : deliveryTime;
+    deliveryTime = deliveryTime === 0 ? 4 : deliveryTime;
     return anOrder.placedOn.plusDays(2 + deliveryTime);
   }
 }
