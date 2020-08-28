@@ -23,12 +23,10 @@ function calculateNotRushDeliveryTime(anOrder) {
 
 function deliveryDate (anOrder, isRush) {
   if (isRush) {
-    let deliveryTime = calculateRushDeliveryTime(anOrder);
-    return anOrder.placedOn.plusDays(1 + deliveryTime);
+    return anOrder.placedOn.plusDays(1 + calculateRushDeliveryTime(anOrder));
   }
   else {
-    let deliveryTime = calculateNotRushDeliveryTime(anOrder);
-    return anOrder.placedOn.plusDays(2 + deliveryTime);
+    return anOrder.placedOn.plusDays(2 + calculateNotRushDeliveryTime(anOrder));
   }
 }
 
