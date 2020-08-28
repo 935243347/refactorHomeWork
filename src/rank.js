@@ -35,7 +35,8 @@ function captainHistoryRisk (voyage, history) {
   return Math.max(result, 0);
 }
 
-function voyageAndHistoryInChina(voyage, history, result) {
+function voyageAndHistoryInChina(voyage, history) {
+  let result = 0;
   if (isVoyageAndHistoryInChina(voyage, history)) {
     result += 3;
     if (history.length > 10) {
@@ -66,7 +67,7 @@ function voyageProfitFactor (voyage, history) {
   if (voyage.zone === 'east-indies') {
     result += 1;
   }
-  result = voyageAndHistoryInChina(voyage, history, result);
+  result += voyageAndHistoryInChina(voyage, history);
   return result;
 }
 
