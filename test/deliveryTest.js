@@ -57,3 +57,17 @@ deliveryDateTest('should_return_4_when_deliveryDate_given_true_MA', t => {
     let result = deliveryDate (anOrder, isRush);
     t.is(4, result);
 })
+
+deliveryDateTest('should_return_5_when_deliveryDate_given_true_ME', t => {
+    let isRush = false;
+    let anOrder = {
+        deliveryState: 'ME',
+        placedOn: {
+            plusDays : function (data) {
+                return data;
+            }
+        }
+    }
+    let result = deliveryDate (anOrder, isRush);
+    t.is(5, result);
+})
