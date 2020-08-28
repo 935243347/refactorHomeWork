@@ -13,16 +13,21 @@ function calculateRushDeliveryTime(anOrder) {
   return deliveryTime;
 }
 
+function calculateNotRushDeliveryTime(anOrder) {
+  let deliveryTime = 0;
+  deliveryTime = createDeliveryTime(['MA', 'CT', 'NY'], anOrder, 2);
+  deliveryTime = deliveryTime === 0 ? createDeliveryTime(['ME', 'NH'], anOrder, 3) : deliveryTime;
+  deliveryTime = deliveryTime === 0 ? 4 : deliveryTime;
+  return deliveryTime;
+}
+
 function deliveryDate (anOrder, isRush) {
   if (isRush) {
     let deliveryTime = calculateRushDeliveryTime(anOrder);
     return anOrder.placedOn.plusDays(1 + deliveryTime);
   }
   else {
-    let deliveryTime = 0;
-    deliveryTime = createDeliveryTime(['MA', 'CT', 'NY'], anOrder, 2);
-    deliveryTime = deliveryTime === 0 ? createDeliveryTime(['ME', 'NH'], anOrder, 3) : deliveryTime;
-    deliveryTime = deliveryTime === 0 ? 4 : deliveryTime;
+    let deliveryTime = calculateNotRushDeliveryTime(anOrder);
     return anOrder.placedOn.plusDays(2 + deliveryTime);
   }
 }
