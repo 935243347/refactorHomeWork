@@ -13,3 +13,15 @@ rankTest('should_return_localdate_when_printOwing_given_invoice_borderSpacing_2_
     let result = printOwing (invoice);
     t.is("*************************** Customer Owes ***************************name: Maxamount: NaNamount: " + dueDate.toLocaleDateString(), result);
 })
+
+rankTest('should_return_localdate_when_printOwing_given_invoice_enpty_borderSpacing', t => {
+    const today = new Date();
+    const dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+    const invoice = {
+        borderSpacing: [],
+        dueDate: dueDate,
+        customer: 'Max'
+    };
+    let result = printOwing (invoice);
+    t.is("*************************** Customer Owes ***************************name: Maxamount: 0amount: " + dueDate.toLocaleDateString(), result);
+})
